@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jason Wang Zi Jie — Data Scientist</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERJ2Y50737"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ERJ2Y50737');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink2: #3a3a5c;
+    --muted: #7a7a9a;
+    --accent: #2563eb;
+    --accent2: #0ea5e9;
+    --gold: #d97706;
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --border: #e2e1dc;
+    --tag-bg: #eef2ff;
+    --tag-text: #3730a3;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Syne', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SIDEBAR ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sidebar {
+    background: var(--ink);
+    color: #e8e8f0;
+    padding: 48px 32px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #2a2a48;
+    border: 3px solid #3a3a68;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .name-block h1 {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .name-block .subtitle {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .sidebar-section h3 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    border-bottom: 1px solid #2a2a48;
+    padding-bottom: 8px;
+  }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #c8c8e0;
+  }
+
+  .contact-list .icon {
+    width: 28px;
+    height: 28px;
+    background: #2a2a48;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .skill-group { margin-bottom: 16px; }
+
+  .skill-group .label {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    background: #2a2a48;
+    color: #a8a8d0;
+    font-size: 11px;
+    font-family: var(--mono);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid #3a3a68;
+  }
+
+  .lang-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .lang-badge {
+    background: #2a2a48;
+    color: var(--accent2);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid #3a3a68;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 56px 56px 80px;
+    background: var(--bg);
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .section-header .section-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── EXPERIENCE CARD ── */
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .exp-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    border-radius: 12px 0 0 12px;
+  }
+
+  .exp-card.senior::before { background: var(--accent2); }
+  .exp-card.mid::before { background: #8b5cf6; }
+  .exp-card.junior::before { background: var(--gold); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: #f0f0f8;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    color: var(--ink2);
+    margin-bottom: 14px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+
+
+  .exp-tools {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tool-tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .edu-school {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .edu-year {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--border);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  /* ── HERO INTRO ── */
+  .hero {
+    margin-bottom: 56px;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    border-radius: 16px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hero h2 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    max-width: 520px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    color: #a8afc9;
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat .num {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat .desc {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #6b7ab8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* ── NAV ── */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sidebar-nav a {
+    color: #8888aa;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sidebar-nav a:hover {
+    color: #ffffff;
+    background: #2a2a48;
+  }
+
+  .sidebar-nav a .dot {
+    width: 5px;
+    height: 5px;
+    background: #3a3a68;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .sidebar-nav a:hover .dot {
+    background: var(--accent2);
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: static;
+      height: auto;
+    }
+    .main { padding: 32px 24px 60px; }
+    .hero { padding: 28px 24px; }
+    .exp-card { padding: 20px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <!-- Cartoon avatar based on Jason's photo -->
+        <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background circle -->
+          <circle cx="55" cy="55" r="55" fill="#2a2a48"/>
+
+          <!-- Neck -->
+          <rect x="49" y="54" width="12" height="10" rx="2" fill="#e8b48a"/>
+
+          <!-- Body — navy jacket -->
+          <path d="M28 110 L34 62 Q42 57 55 59 Q68 57 76 62 L82 110 Z" fill="#1c3158"/>
+          <!-- Blue scarf / tie-dye scarf draped over jacket -->
+          <path d="M46 59 Q50 64 53 72 L55 110 L57 72 Q60 64 64 59 Q59 57 55 59 Q51 57 46 59Z" fill="#2a6fc4"/>
+          <!-- Scarf tie-dye patches -->
+          <ellipse cx="52" cy="67" rx="2.5" ry="3.5" fill="#5b9bd5" opacity="0.7"/>
+          <ellipse cx="58" cy="74" rx="2" ry="3" fill="#1a4fa0" opacity="0.6"/>
+          <ellipse cx="54" cy="82" rx="2" ry="2.5" fill="#6aaee8" opacity="0.5"/>
+          <!-- Jacket lapels -->
+          <path d="M34 62 L44 72 L55 61" fill="#243d6a" stroke="none"/>
+          <path d="M76 62 L66 72 L55 61" fill="#243d6a" stroke="none"/>
+
+          <!-- Head shape — rounded, slightly wide -->
+          <ellipse cx="55" cy="36" rx="17" ry="18" fill="#e8b48a"/>
+
+          <!-- Ears -->
+          <ellipse cx="38.5" cy="37" rx="3.5" ry="4.5" fill="#e8b48a"/>
+          <ellipse cx="71.5" cy="37" rx="3.5" ry="4.5" fill="#e8b48a"/>
+          <!-- Inner ear -->
+          <ellipse cx="38.5" cy="37" rx="2" ry="2.8" fill="#d4956e"/>
+          <ellipse cx="71.5" cy="37" rx="2" ry="2.8" fill="#d4956e"/>
+
+          <!-- Hair — short black, slightly messy on top, side parted -->
+          <!-- Main hair cap -->
+          <path d="M38 28 Q40 16 55 15 Q70 16 72 28 Q68 20 55 19 Q42 20 38 28Z" fill="#1a1008"/>
+          <!-- Top hair volume, slightly to the left -->
+          <ellipse cx="53" cy="19" rx="14" ry="7" fill="#1a1008"/>
+          <!-- Front fringe, slight sweep left -->
+          <path d="M38 28 Q44 22 56 21 Q62 21 66 25 Q60 22 55 23 Q46 24 41 30Z" fill="#1a1008"/>
+          <!-- Side bits -->
+          <path d="M38 28 Q36 32 37 38 Q37 30 40 27Z" fill="#1a1008"/>
+          <path d="M72 28 Q74 32 73 38 Q73 30 70 27Z" fill="#1a1008"/>
+
+          <!-- Eyebrows — slightly thick, natural arch -->
+          <path d="M44 30 Q49 27.5 54 29" fill="none" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+          <path d="M56 29 Q61 27.5 66 30" fill="none" stroke="#1a1008" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Eyes — slightly narrowed, friendly East Asian shape -->
+          <!-- Left eye -->
+          <path d="M44 34 Q49 31 54 34 Q49 37 44 34Z" fill="white"/>
+          <ellipse cx="49" cy="34" rx="2.5" ry="2.2" fill="#3a2010"/>
+          <ellipse cx="49" cy="34" rx="1.5" ry="1.5" fill="#1a0a05"/>
+          <circle cx="50" cy="33" r="0.7" fill="white"/>
+          <!-- Left eyelid crease -->
+          <path d="M44 33 Q49 30.5 54 33" fill="none" stroke="#c8906a" stroke-width="0.7" stroke-linecap="round"/>
+
+          <!-- Right eye -->
+          <path d="M56 34 Q61 31 66 34 Q61 37 56 34Z" fill="white"/>
+          <ellipse cx="61" cy="34" rx="2.5" ry="2.2" fill="#3a2010"/>
+          <ellipse cx="61" cy="34" rx="1.5" ry="1.5" fill="#1a0a05"/>
+          <circle cx="62" cy="33" r="0.7" fill="white"/>
+          <!-- Right eyelid crease -->
+          <path d="M56 33 Q61 30.5 66 33" fill="none" stroke="#c8906a" stroke-width="0.7" stroke-linecap="round"/>
+
+          <!-- Nose — small, soft -->
+          <path d="M53 39 Q52 44 54 45 Q55 45.5 56 45 Q58 44 57 39" fill="none" stroke="#c8906a" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M51 44 Q55 46.5 59 44" fill="none" stroke="#c8906a" stroke-width="1" stroke-linecap="round"/>
+
+          <!-- Big warm smile — cheeks lifted -->
+          <path d="M46 49 Q55 58 64 49" fill="none" stroke="#bf7050" stroke-width="2" stroke-linecap="round"/>
+          <!-- Smile inner -->
+          <path d="M48 51 Q55 57 62 51" fill="#c0604a" opacity="0.3"/>
+
+          <!-- Chubby cheeks blush -->
+          <ellipse cx="43" cy="46" rx="5" ry="3" fill="#e8907a" opacity="0.3"/>
+          <ellipse cx="67" cy="46" rx="5" ry="3" fill="#e8907a" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="name-block">
+        <h1>Jason Wang<br><em>Zi Jie</em></h1>
+        <p class="subtitle">Lead Field Data Scientist</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#experience"><span class="dot"></span>Experience</a>
+      <a href="#education"><span class="dot"></span>Education</a>
+
+    </nav>
+
+    <div class="sidebar-section">
+      <h3>Contact</h3>
+      <ul class="contact-list">
+        <li>
+          <span class="icon">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 4l8 5 8-5M2 4h16v12H2V4z" stroke="#6b8cff" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dda7b4b7b4b8f3aabcb3baefec9dbab0bcb4b1f3beb2b0">[email&#160;protected]</a>
+        </li>
+        <li>
+          <span class="icon">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2C7 2 4 4.5 4 8c0 5 6 10 6 10s6-5 6-10c0-3.5-3-6-6-6z" stroke="#6b8cff" stroke-width="1.5"/>
+              <circle cx="10" cy="8" r="2" stroke="#6b8cff" stroke-width="1.5"/>
+            </svg>
+          </span>
+          Singapore
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section" id="skills">
+      <h3>Languages</h3>
+      <div class="lang-row">
+        <span class="lang-badge">English</span>
+        <span class="lang-badge">Chinese</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Tech Stack</h3>
+      <div class="skill-group">
+        <span class="label">Programming</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="label">Data Platforms</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Databricks</span>
+          <span class="skill-tag">Elasticsearch</span>
+          <span class="skill-tag">Oracle DB</span>
+          <span class="skill-tag">AWS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="label">Engineering</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Airflow</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="label">BI & Visualisation</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Kibana</span>
+          <span class="skill-tag">Power BI</span>
+        </div>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- Hero banner -->
+    <div class="hero">
+      <p class="hero-label">Profile</p>
+      <h2>Data Scientist specialising in fraud prevention & identity verification</h2>
+      <p>Customer-facing data science leader across Southeast Asia and Greater China, translating complex technical capabilities into enterprise deals and real-world impact.</p>
+
+    </div>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="16" height="11" rx="2" stroke="white" stroke-width="1.5"/>
+            <path d="M7 6V5a3 3 0 016 0v1" stroke="white" stroke-width="1.5"/>
+            <line x1="10" y1="10" x2="10" y2="14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2>Experience</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <!-- Job 1 -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <span class="exp-role">Lead Field Data Scientist</span>
+          <span class="exp-date">Jun 2025 — Present</span>
+        </div>
+        <div class="exp-company">Mastercard</div>
+        <p class="exp-desc">Leading customer-facing data science engagements for identity verification and fraud prevention across banks, fintechs, and digital platforms in SEA and Greater China.</p>
+        <ul class="exp-bullets">
+          <li>Lead technical engagements with enterprise customers to design fraud and identity verification solutions using Mastercard APIs</li>
+          <li>Influence go-to-market strategy by translating insights from POCs and customer engagements into sales and product positioning</li>
+          <li>Mentor and guide junior field data scientists, providing technical direction and supporting project delivery</li>
+          <li>Manage team workload and project prioritisation across multiple concurrent customer engagements</li>
+        </ul>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="exp-card senior">
+        <div class="exp-header">
+          <span class="exp-role">Senior Field Data Scientist</span>
+          <span class="exp-date">Dec 2022 — Jun 2025</span>
+        </div>
+        <div class="exp-company" style="color: var(--accent2);">Mastercard</div>
+        <p class="exp-desc">Customer-facing data scientist supporting identity verification and fraud prevention solutions across SEA and Greater China.</p>
+        <ul class="exp-bullets">
+          <li>Partnered with customers to identify fraud and identity verification use cases, translating business needs into solutions using Mastercard Identity APIs</li>
+          <li>Designed and delivered 20+ POCs demonstrating API data value through rules and ML models integrated into customer workflows</li>
+          <li>Collaborated with Account Executives and Customer Success to provide technical pre- and post-sales support across the full sales lifecycle</li>
+          <li>Presented POC outcomes to stakeholders, contributing to enterprise deal wins with strategic clients across e-commerce, fintechs, and banks</li>
+          <li>Gathered customer feedback and communicated product insights to internal teams to inform product improvements</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Jupyter</span>
+          <span class="tool-tag">Databricks</span>
+          <span class="tool-tag">Git</span>
+          <span class="tool-tag">Airflow</span>
+          <span class="tool-tag">AWS</span>
+        </div>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="exp-card mid">
+        <div class="exp-header">
+          <span class="exp-role">Data Scientist</span>
+          <span class="exp-date">Aug 2021 — Jul 2022</span>
+        </div>
+        <div class="exp-company" style="color: #8b5cf6;">BNP Paribas</div>
+        <p class="exp-desc">AML Monitoring Solutions — partnered with the Anti-Money Laundering team to develop monitoring solutions for correspondent banking.</p>
+        <ul class="exp-bullets">
+          <li>Analysed complex transactional datasets to map fund flows and detect suspicious patterns</li>
+          <li>Built automated controls and dashboards for AML analysts and management to monitor investigations</li>
+          <li>Architected end-to-end data pipelines and automation, reducing manual processes by 50%</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Python</span>
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Jupyter</span>
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Elasticsearch</span>
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Oracle DB</span>
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Kibana</span>
+          <span class="tool-tag" style="background:#f3e8ff; color:#6d28d9;">Power BI</span>
+        </div>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="exp-card junior">
+        <div class="exp-header">
+          <span class="exp-role">Junior Data Scientist</span>
+          <span class="exp-date">Aug 2019 — Aug 2021</span>
+        </div>
+        <div class="exp-company" style="color: var(--gold);">DBS Bank</div>
+        <ul class="exp-bullets">
+          <li>Built automated Kibana dashboards for departmental tech spending analysis</li>
+          <li>Applied NLP topic modelling and classification to categorise incidents — insights led to a 30% reduction in ticket volume</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="tool-tag" style="background:#fef3c7; color:#92400e;">Python</span>
+          <span class="tool-tag" style="background:#fef3c7; color:#92400e;">Elasticsearch</span>
+          <span class="tool-tag" style="background:#fef3c7; color:#92400e;">Kibana</span>
+        </div>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="exp-card junior">
+        <div class="exp-header">
+          <span class="exp-role">IT Infrastructure Project Management</span>
+          <span class="exp-date">Aug 2017 — Aug 2019</span>
+        </div>
+        <div class="exp-company" style="color: var(--gold);">DBS Bank</div>
+        <ul class="exp-bullets">
+          <li>Technical lead supporting IT infrastructure delivery for internal enterprise projects across DBS</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Education -->
+    <section class="section" id="education">
+      <div class="section-header">
+        <div class="section-icon" style="background: #7c3aed;">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2L2 6l8 4 8-4-8-4z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 6v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M6 8.5v5a4 4 0 008 0v-5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2>Education</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">B.Eng, Computer Engineering (Honours)</div>
+          <div class="edu-school">National University of Singapore<
